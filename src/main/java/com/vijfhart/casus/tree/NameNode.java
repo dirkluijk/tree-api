@@ -3,7 +3,7 @@ package com.vijfhart.casus.tree;
 /**
  * @author Dirk Luijk <dirk.luijk@ordina.nl>
  */
-public class NameNode implements Node<NameNode> {
+public class NameNode extends AbstractNode<NameNode> {
 
     private NameNode parent;
     private String name;
@@ -13,48 +13,8 @@ public class NameNode implements Node<NameNode> {
     }
 
     public NameNode(String name, NameNode parent) {
+        super(parent);
         this.name = name;
-        this.parent = parent;
-    }
-
-    @Override
-    public NameNode getParent() {
-        return parent;
-    }
-
-    @Override
-    public void setParent(NameNode node) {
-        this.parent = node;
-    }
-
-    @Override
-    public boolean isLeaf() {
-        return true;
-    }
-
-    @Override
-    public int compareLevelTo(NameNode node) {
-        if (parent == null && node.getParent() == null) {
-            // beide null, dus gelijk
-            return 0;
-        } else if (parent == null) {
-            // this heeft lager level
-            return -1;
-        } else if(node.getParent() == null) {
-            // node heeft geen parent, dus this is hoger
-            return 1;
-        } else if (parent == node.getParent()) {
-            // gelijk
-            return 0;
-        } else {
-            // vergelijk parents
-            return parent.compareLevelTo(node.getParent());
-        }
-    }
-
-    @Override
-    public int compareTo(NameNode node) {
-        return compareLevelTo(node);
     }
 
     @Override

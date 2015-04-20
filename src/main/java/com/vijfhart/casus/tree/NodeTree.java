@@ -80,10 +80,6 @@ public class NodeTree<E extends Node<E>> implements Tree<E> {
             private boolean descendantOfStartWith(E node) {
                 E parent = node.getParent();
 
-                if (parent == null) {
-                    return false;
-                }
-
                 while (parent != null) {
                     if (parent == startNode) {
                         return true;
