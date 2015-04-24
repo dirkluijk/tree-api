@@ -1,11 +1,11 @@
-package com.vijfhart.casus.tree;
+package com.vijfhart.casus.tree.node;
 
 /**
- * Represents a node in a tree with a parent relation
+ * Represents a node with a parent relationship.
  *
  * @author Dirk Luijk <dirk.luijk@ordina.nl>
  */
-public interface Node<E extends Node<E>> extends LevelComparable<E> {
+public interface Node<E extends Node<E>> {
 
     /**
      * Retreives the parent of this node.
@@ -22,9 +22,9 @@ public interface Node<E extends Node<E>> extends LevelComparable<E> {
     public void setParent(E node);
 
     /**
-     * Checks whether this node is a leaf (e.g. has children).
+     * Returns whether this node is a leaf (e.g. has no descendants).
      *
-     * @return True if leaf, false if not.
+     * @return True if the node is leaf, false if not.
      */
     public boolean isLeaf();
 }
