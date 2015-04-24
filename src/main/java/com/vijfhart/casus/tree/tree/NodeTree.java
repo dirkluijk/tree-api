@@ -1,6 +1,6 @@
 package com.vijfhart.casus.tree.tree;
 
-import com.vijfhart.casus.tree.comparator.NodeTreeComparator;
+import com.vijfhart.casus.tree.comparator.NodeComparator;
 import com.vijfhart.casus.tree.iterator.TreeIterator;
 import com.vijfhart.casus.tree.node.Node;
 import com.vijfhart.casus.tree.node.NodeDouble;
@@ -27,7 +27,7 @@ public class NodeTree<E extends Node<E>> implements Tree<E> {
     /**
      * A comparator to maintain the tree-like ordering of nodes.
      */
-    private NodeTreeComparator<E> nodeTreeComparator;
+    private NodeComparator<E> nodeComparator;
 
     /**
      * Constructs an empty tree.
@@ -43,7 +43,7 @@ public class NodeTree<E extends Node<E>> implements Tree<E> {
      */
     public NodeTree(List<E> nodes) {
         this.nodeList = new ArrayList<>(nodes);
-        this.nodeTreeComparator = new NodeTreeComparator<>();
+        this.nodeComparator = new NodeComparator<>();
     }
 
     @Override
@@ -117,13 +117,13 @@ public class NodeTree<E extends Node<E>> implements Tree<E> {
 
     @Override
     public TreeIterator<E> iterator() {
-        Collections.sort(nodeList, nodeTreeComparator);
+        Collections.sort(nodeList, nodeComparator);
         return new NodeTreeIterator();
     }
 
     @Override
     public void setSiblingsComparator(Comparator<E> comparator) {
-        nodeTreeComparator.setSiblingsComparator(comparator);
+        nodeComparator.setSiblingsComparator(comparator);
     }
 
     /**

@@ -10,24 +10,12 @@ import java.util.Comparator;
  *
  * @author Dirk Luijk <dirk.luijk@ordina.nl>
  */
-public class NodeTreeComparator<E extends Node<E>> implements Comparator<E> {
-
-    /**
-     * A comparator to compare the nodes levels.
-     */
-    private Comparator<E> levelComparator;
+public class NodeComparator<E extends Node<E>> implements Comparator<E> {
 
     /**
      * An optional comparator for siblings.
      */
     private Comparator<E> siblingsComparator;
-
-    /**
-     * Constructs a new NodeTreeComparator.
-     */
-    public NodeTreeComparator() {
-        levelComparator = new NodeLevelComparator<>();
-    }
 
     /**
      * Compares two nodes, based on their relative position.
@@ -39,7 +27,7 @@ public class NodeTreeComparator<E extends Node<E>> implements Comparator<E> {
      */
     @Override
     public int compare(E node1, E node2) {
-        int levelDifference = levelComparator.compare(node1, node2);
+        int levelDifference = compareLevel(node1, node2);
 
         if (isDescendant(node1, node2) || isDescendant(node2, node1)) {
             return levelDifference;
@@ -64,6 +52,18 @@ public class NodeTreeComparator<E extends Node<E>> implements Comparator<E> {
      */
     public void setSiblingsComparator(Comparator<E> siblingsComparator) {
         this.siblingsComparator = siblingsComparator;
+    }
+
+    private int compareLevel(E node1, E node2) {
+        if (node1.getParent() == node2.getParent()) {
+            return 0;
+        } else if (node1.getParent() == null) {
+            return -1;
+        } else if(node2.getParent() == null) {
+            return 1;
+        } else {
+            return compareLevel(node1.getParent(), node2.getParent());
+        }
     }
 
     private boolean isDescendant(E parentNode, E childNode) {

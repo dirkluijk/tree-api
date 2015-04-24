@@ -15,11 +15,11 @@ public interface Node<E extends Node<E>> {
     public E getParent();
 
     /**
-     * Sets the parent of this node.
+     * Sets the parent of this parent.
      *
-     * @param node The parent, which must be a Node or subclass of Node.
+     * @param parent The parent, which must be a Node or subclass of Node.
      */
-    public void setParent(E node);
+    public void setParent(E parent);
 
     /**
      * Returns whether this node is a leaf (e.g. has no descendants).

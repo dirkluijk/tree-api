@@ -10,8 +10,8 @@ import java.util.Comparator;
 
 import static org.junit.Assert.*;
 
-public class NodeTreeComparatorTest {
-    private NodeTreeComparator<NameNode> comparator;
+public class NodeComparatorTest {
+    private NodeComparator<NameNode> comparator;
 
     private NameNode nodeA;
     private NameNode nodeB;
@@ -48,7 +48,28 @@ public class NodeTreeComparatorTest {
          *   G  H   I
          */
 
-        comparator = new NodeTreeComparator<>();
+        comparator = new NodeComparator<>();
+    }
+
+    @Test
+    public void testCompareLevel() throws Exception {
+
+        // one is root
+        assertNodeLarger(nodeB, nodeA);
+        assertNodeSmaller(nodeA, nodeC);
+
+        // same level, sorts alphabetically be default
+        assertNodeSmaller(nodeB, nodeC);
+        assertNodeLarger(nodeF, nodeE);
+
+        // different level (non-root, one level difference)
+        assertNodeSmaller(nodeB, nodeD);
+        assertNodeLarger(nodeI, nodeE);
+        assertNodeLarger(nodeF, nodeB);
+
+        // different level (multiple levels difference)
+        assertNodeSmaller(nodeB, nodeH);
+        assertNodeLarger(nodeI, nodeB);
     }
 
     @Test
