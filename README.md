@@ -2,10 +2,10 @@
 
 A small Java library for creating tree structures.
 
+[![Build Status](https://travis-ci.org/dirkluijk/tree-api.svg?branch=v1.0.0-BETA)](https://travis-ci.org/dirkluijk/tree-api)
+
 ## API Documentation
 Find the JavaDoc documentation at http://dirkluijk.github.io/tree-api/.
-
-![Travis](https://travis-ci.org/dirkluijk/tree-api.svg?branch=master)
 
 ## Features
 
