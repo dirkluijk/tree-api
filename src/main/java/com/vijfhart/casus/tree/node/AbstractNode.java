@@ -1,5 +1,7 @@
 package com.vijfhart.casus.tree.node;
 
+import com.vijfhart.casus.tree.comparator.NodeComparator;
+
 /**
  * An example implementation of a node.
  *
@@ -7,7 +9,7 @@ package com.vijfhart.casus.tree.node;
  *
  * @author Dirk Luijk <dirk.luijk@ordina.nl>
  */
-public abstract class AbstractNode<E extends AbstractNode<E>> implements Node<E> {
+public abstract class AbstractNode<E extends AbstractNode<E>> implements Node<E>, Comparable<E> {
 
     /**
      * The parent of this node.
@@ -76,5 +78,11 @@ public abstract class AbstractNode<E extends AbstractNode<E>> implements Node<E>
         }
 
         return false;
+    }
+
+    @Override
+    public int compareTo(E other) {
+        NodeComparator comparator = new NodeComparator<>();
+        return comparator.compare(this, other);
     }
 }
