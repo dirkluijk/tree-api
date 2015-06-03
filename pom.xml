@@ -24,7 +24,7 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.eluder.coveralls</groupId>
+                <groupId>org.eluder.coveralls</
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
